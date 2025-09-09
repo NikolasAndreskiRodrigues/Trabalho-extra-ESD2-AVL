@@ -1,0 +1,70 @@
+40,20,60,10,30,25
+
+método publico adicionar(val), resettando a raiz chamando o método privado adc(val,noatual,pai)
+
+raiz = adc(val,raiz,nulo)
+
+verificar se o valor atual é nulo para adicionar
+
+compara o valor do nó atual com o valor que queremos inserir, se menor = esquerdo, se maior = direito
+
+novo nó recebe adicionar passando o valor 20, no atual vai ser o filho da esquerda, e o pai a raiz 40
+
+adc(20,null,40)
+
+vai criar o novo nó(20) e vai dizer que o pai é 40 
+
+novo método balancear(noatual, valor)
+
+o nó atual sendo 40, o fator de balanceamento é 1, sendo 1 retorna novo nó
+
+60 sendo maior, passará o valor que é 60, o nó direito do 40 que é o atual, e como pai do nó atual, nó atual = nulo então é criado o novo nó 60
+
+método de calcular altura  - h = 1 + max(1,1)  altura.filhoesq e altura.filhodir
+
+1-1 = 0, então o balanceamento é 0
+
+10 é menor vai para esquerda, novo nó não é nulo e o valor é menor que o nó atual
+
+nó agora é nulo e o nó de 10 é criado, sendo filho de 20 e criando a altura novamente (primeiro falar que o filho tem um pai depois que o pai tem um filho)
+
+f de 20 = 1 então continua normal retornando ele mesmo
+
+f de 40 = 1 então retorna ele mesmo e acabou a recursão
+
+30 é menor que 40, maior que 20, recalcula alturas e fatores de balanceamento
+
+ainda segue sem nós desbalanceados
+
+25 é menor que 40, maior que 20, menor que 30, recalcula as alturas, e o fator de balanceamento de 40 se torna 4, se tornando desbalanceado
+
+se o valor (25) for menor que o valor do filho esquerdo(20) do nó desbalanceado(40), dupla rotação a direita = rotação a esquerda + rotação a direita
+
+precisamos rotacionar 
+
+primeiro, rotação à esquerda no filho esquerdo do nó desbalanceado, ou seja, rotacaoEsq(20)
+o nó 30 vai vai subir
+o nó 20 vai descer, virando filho esquerdo do 30
+a subárvore esquerda do 30 (o 25) vai virar o novo filho direito do 20
+o pai do 30 (que era o 20) muda, agora o pai dele é o 40
+e o filho esquerdo do 40 (que era o 20) agora passa a ser o 30
+depois dessa primeira rotação, a árvore ficou assim: 40 ainda é a raiz, o seu filho esquerdo agora é 30, o filho esquerdo do 30 é o 20, e o filho direito do 20 é o 25
+agora a árvore está pronta para a segunda parte, a rotação à direita no nó que estava desbalanceado desde o começo, o 40
+rotacaoDir(40)
+o nó 30 (filho esquerdo do 40) sobe para virar a nova raiz da árvore
+o 40 desce, se tornando o filho direito do 30
+o antigo filho direito do 30, que ficou nulo no passo anterior, agora recebe o 40
+o pai do 40 agora é o 30. E o pai do 30 é nulo, já que ele virou a raiz
+o filho direito do 40, o 60, continua pendurado nele
+
+fim da rotação dupla
+
+
+o 25 tem altura 1, fator 0
+o 10 tem altura 1, fator 0
+o 60 tem altura 1, fator 0
+o 20 tem altura 2 (1 + max(altura(10), altura(25))), fator 1-1 = 0
+o 40 tem altura 2 (1 + altura(60)), fator 0-1 = -1
+o 30, nova raiz, tem altura 3 (1 + max(altura(20), altura(40))), fator 2-2 = 0
+
+a árvore está balanceada
